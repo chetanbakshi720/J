@@ -1,0 +1,176 @@
+------------------------------------Junit java file
+
+package septNine;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import graphql.Assert;
+
+
+public class NineSept {
+
+	static WebDriver driver;
+
+	public void D() {
+		System.setProperty("webdriver.chrome.driver",
+				"E:\\STS\\semister 5\\automated_testing\\selenium\\chromedriver.exe");
+		driver = new ChromeDriver();
+		//driver.get("https:www.google.com");
+	    driver.get("https://cegepgim.omnivox.ca/Login/Account/Login?L=ANG");
+
+		driver.manage().window().maximize();
+	}
+	
+//	public void webpage() {
+//		D();
+//		driver.get("https:www.google.com");
+//	}
+//	
+//	public void LogIn() {
+//		webpage();
+//		driver.findElement(By.xpath("//a[contains(text(),'Sign in')]")).click();
+//	}
+	    public void testRightCredentials() {
+	    D();
+		driver.findElement(By.xpath("//a[@id='role-2']")).click();
+		driver.findElement(By.xpath("//input[@id='Identifiant']")).sendKeys("123");
+		driver.findElement(By.xpath("//input[@id='Password']")).sendKeys("123");
+		driver.findElement(By.xpath("//span[contains(text(),'Log In')]")).click();
+		WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Log In')]"));
+		Assert.assertNotNull(element);
+		driver.close();
+		
+	}
+
+	
+	
+	public void testWrongCredentials() {
+     	D();
+		driver.findElement(By.xpath("//a[@id='role-2']")).click();
+		driver.findElement(By.xpath("//input[@id='Identifiant']")).sendKeys("123");
+		driver.findElement(By.xpath("//input[@id='Password']")).sendKeys("123");
+		driver.findElement(By.xpath("//span[contains(text(),'Log In')]")).click();
+		WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Log In')]"));
+		Assert.assertNotNull(element);
+		
+	}
+}
+
+
+-----------------junit file
+
+package septNine;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class NineSep {
+	static WebDriver driver;
+	
+	@Before
+	public void setUp() throws Exception {
+		
+	System.setProperty("webdriver.chrome.driver","E:\\\\\\\\STS\\\\\\\\semister 5\\\\\\\\automated_testing\\\\\\\\selenium\\\\\\\\chromedriver.exe");
+    driver =new ChromeDriver();
+    driver.get("https://cegepgim.omnivox.ca/Login/Account/Login?L=ANG");
+    driver.manage().window().maximize();
+    Thread.sleep(3000);
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+		driver.close();
+	}
+
+	@Test
+	public void test() {
+		//fail("Not yet implemented");
+		
+		NineSept ob1 = new NineSept();
+		ob1.testRightCredentials();
+	}
+
+	@Test
+	public void test1() {
+		//fail("Not yet implemented");
+		
+		NineSept ob2 = new NineSept();
+		ob2.testWrongCredentials();
+	}
+	
+	
+}
+
+
+----------------------independent jUnit 
+
+package septNine;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import graphql.Assert;
+
+public class Junitttt {
+
+	static WebDriver driver;
+
+	@Before
+	public void setUp() throws Exception {
+		
+	System.setProperty("webdriver.chrome.driver","E:\\\\\\\\STS\\\\\\\\semister 5\\\\\\\\automated_testing\\\\\\\\selenium\\\\\\\\chromedriver.exe");
+    driver =new ChromeDriver();
+    driver.get("https://cegepgim.omnivox.ca/Login/Account/Login?L=ANG");
+    driver.manage().window().maximize();
+    Thread.sleep(2000);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		driver.close();
+	}
+
+	@Test
+	public void testRightCredentials() {
+//		fail("Not yet implemented");
+		
+		driver.findElement(By.xpath("//a[@id='role-2']")).click();
+		driver.findElement(By.xpath("//input[@id='Identifiant']")).sendKeys("123");
+		driver.findElement(By.xpath("//input[@id='Password']")).sendKeys("123");
+		driver.findElement(By.xpath("//span[contains(text(),'Log In')]")).click();
+		WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Log In')]"));
+		Assert.assertNotNull(element);
+		
+	}
+
+	
+	@Test
+	public void testWrongCredentials() {
+//		fail("Not yet implemented");
+		driver.findElement(By.xpath("//a[@id='role-2']")).click();
+		driver.findElement(By.xpath("//input[@id='Identifiant']")).sendKeys("123");
+		driver.findElement(By.xpath("//input[@id='Password']")).sendKeys("123");
+		driver.findElement(By.xpath("//span[contains(text(),'Log In')]")).click();
+		WebElement element = driver.findElement(By.xpath("//span[contains(text(),'Log In')]"));
+		Assert.assertNotNull(element);
+		
+	}
+}
